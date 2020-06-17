@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Hello, world!</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            overflow: auto;
+        }
+
+        .opt-btn {
+            padding-top: 100px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="opt-btn">
+            <div class="container">
+                <button type="button" class="btn btn-primary" id="create">Create VM</button>
+                <button type="button" class="btn btn-danger" id="delete">Delete VM</button>
+                <button type="button" class="btn btn btn-warning" id="update">Update VM</button>
+                <button type="button" class="btn btn-success" id="retrieve">Retrieve VM</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+    </script>
+    <script>
+        $(function () {
+
+            // create
+            $('#create').on('click', function () {
+                console.log('create');
+                loading.call(this, 'Create VM');
+                optMethod('/api/email/create', {}, function (res) {
+                    console.log(res);
+                });
+            })
+
+            // delete
+            $('#delete').on('click', function () {
+                console.log('delete');
+                loading.call(this, 'Delete VM');
+                optMethod('/api/email/delete', {}, function (res) {
+                    console.log(res);
+                });
+            })
+
+            // update
+            $('#update').on('click', function () {
+                console.log('update');
+                loading.call(this, 'Update VM');
+                optMethod('/api/email/update', {}, function (res) {
+                    console.log(res);
+                });
+            })
+
+            // retrieve
+            $('#retrieve').on('click', function () {
+                console.log('retrieve');
+                loading.call(this, 'Retrieve VM');
+                optMethod('/api/email/retrieve', {}, function (res) {
+                    console.log(res);
+                });
+            })
+
+            // opt method
+            function optMethod(url, data, callback) {
+                var baseUrl = 'http://localhost:3000';
+                $.ajax({
+                    type: "GET",
+                    url: baseUrl + url,
+                    data: data,
+                    dataType: "json",
+                    success: callback,
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            }
+
+            // loading
+            function loading(name, time) {
+                name = name || 'Loading';
+                time = time || 2000;
+                var that = $(this),
+                    text = that.html(),
+                    timer = null,
+                    html = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>\
+                    <span >Loading...</span>';
+                that.attr('disabled', true).html(html);
+                timer = setTimeout(function () {
+                    clearTimeout(timer);
+                    that.html(text).attr('disabled', false);
+                }, time)
+            }
+        })
+    </script>
+</body>
+
+</html>

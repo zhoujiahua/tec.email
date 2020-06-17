@@ -1,0 +1,33 @@
+@startuml
+' scale 3
+"TE Cloud VM Module" --> Create VM Method
+"TE Cloud VM Module" --> Delete VM Method
+"TE Cloud VM Module" --> Update VM Method
+"TE Cloud VM Module" --> Retrieve VM Method
+
+"Create VM Method" --> Create API
+"Delete VM Method" --> Delete API
+"Update VM Method" --> Update API
+"Retrieve VM Method" --> Retrieve API
+
+"Create API" --> Success
+"Create API" --> Error
+Success --> Send Email Method
+Error --> Send Email Method
+"Delete API" --> Success
+"Delete API" --> Error
+Success --> Send Email Method
+Error --> Send Email Method
+"Update API" --> Success
+"Update API" --> Error
+Success --> Send Email Method
+Error --> Send Email Method
+"Retrieve API" --> Success
+"Retrieve API" --> Error
+Success --> Send Email Method
+Error --> Send Email Method
+
+"Send Email Method" --> Success Message
+"Send Email Method" --> Error Message
+
+@enduml
