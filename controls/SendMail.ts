@@ -1,4 +1,5 @@
 import { EmailOptionType } from './../config/DataType';
+import { fetch, post } from './../controls/RequestHttp';
 export class SendMail {
     userID?: string;
     userName: string;
@@ -15,5 +16,21 @@ export class SendMail {
     }
     setErrorBody(): string {
         return `Error information:${this.errorBody}`;
+    }
+    sendMailContent() {
+        const content = {
+            id_user: this.userID,
+            subject: this.setErrorSubject(),
+            message: this.setErrorBody()
+        };
+        return new Promise(async (resolve, reject) => {
+            try {
+                let d = await post('/manage/v1/user/send_mail', content);
+                return resolve(d);
+            } catch (error) {
+                console.error(error);
+                return reject(error);
+            }
+        })
     }
 }

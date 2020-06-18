@@ -1,0 +1,22 @@
+@startuml
+' scale 3
+"TE VM Type Error" -> "User Error"
+"TE VM Type Error" -> "System Error"
+
+' VM_NOT_CREATED <-- "User Error"
+' VM_NOT_TERMINATED <-- "User Error"
+' VM_NOT_STARTED <-- "User Error"
+' VM_NOT_STOPPED <-- "User Error"
+' VM_NOT_CHECKED <-- "User Error"
+
+"User Error" -> VM_NOT_CREATED
+"User Error" -> VM_NOT_TERMINATED
+"User Error" -> VM_NOT_STARTED
+"User Error" -> VM_NOT_STOPPED
+"User Error" -> VM_NOT_CHECKED
+
+"System Error" -> 500
+"System Error" -> 400
+"System Error" -> Other Error
+
+@enduml

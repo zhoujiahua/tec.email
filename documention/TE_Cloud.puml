@@ -2,18 +2,18 @@
 "VM Module" -> "VM Method": Create & Delete & Update & Retrieve VM Method
 note left
     VM Operation method
-    Create method
-    Delete method
-    Update method
-    Retrieve method
+    (1) Create method
+    (2) Delete method
+    (3) Update method
+    (4) Retrieve method
 end note
 "VM Server" <- "VM Method": Create & Delete & Update & Retrieve Request API
 note left
     VM Operation API
-    Create API
-    Delete API
-    Update API
-    Retrieve API
+    (1) Create API
+    (2) Delete API
+    (3) Update API
+    (4) Retrieve API
 end note
 "VM Method" <-- "VM Server": Return Success & Error Status message
 "Send Mail Application" <- "VM Method": Send Success infomation & Error information
@@ -22,11 +22,12 @@ note left
     Success & Error
 end note
 note right
-    Type Error
-    (1) This is
-    (2) This is
-    (3) This is
-    (4) This is
+    Type Error (Uesr Error & System Error)
+    (1) VM_NOT_CREATED
+    (2) VM_NOT_TERMINATED
+    (3) VM_NOT_STARTED
+    (4) VM_NOT_STOPPED
+    (5) VM_NOT_CHECKED
 end note
 
 @enduml

@@ -55,5 +55,7 @@ cnpm i typescript  @types/node @types/express @types/mongoose @types/bcryptjs @t
   },
 
 # 除了用ts-node-dev，还可以使用nodemon --exec ts-node --files app.ts 执行
+npm install -g ts-node
+npm config get prefix
 
 ```
